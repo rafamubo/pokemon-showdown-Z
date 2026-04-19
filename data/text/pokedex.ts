@@ -161,6 +161,9 @@ export const PokedexText: { [id: IDEntry]: PokedexText } = {
 	pikachuworld: {
 		name: "Pikachu-World",
 	},
+	pikachuz: {
+		name: "Pikachu-Zeta",
+	},	
 	raichu: {
 		name: "Raichu",
 	},

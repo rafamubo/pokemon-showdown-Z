@@ -242,8 +242,8 @@ export const Pokedex: import('../sim/dex-species').SpeciesDataTable = {
 	caterpie: {
 		num: 10,
 		name: "Caterpie",
-		types: ["Bug"],
-		baseStats: { hp: 45, atk: 30, def: 35, spa: 20, spd: 20, spe: 45 },
+		types: ["Dragon"],
+		baseStats: { hp: 100, atk: 30, def: 35, spa: 20, spd: 20, spe: 45 },
 		abilities: { 0: "Shield Dust", H: "Run Away" },
 		heightm: 0.3,
 		weightkg: 2.9,
@@ -538,13 +538,14 @@ export const Pokedex: import('../sim/dex-species').SpeciesDataTable = {
 		evoType: "levelFriendship",
 		evos: ["Raichu", "Raichu-Alola"],
 		eggGroups: ["Field", "Fairy"],
-		otherFormes: ["Pikachu-Cosplay", "Pikachu-Rock-Star", "Pikachu-Belle", "Pikachu-Pop-Star", "Pikachu-PhD", "Pikachu-Libre", "Pikachu-Original", "Pikachu-Hoenn", "Pikachu-Sinnoh", "Pikachu-Unova", "Pikachu-Kalos", "Pikachu-Alola", "Pikachu-Partner", "Pikachu-Starter", "Pikachu-World"],
+		otherFormes: ["Pikachu-Cosplay", "Pikachu-Rock-Star", "Pikachu-Belle", "Pikachu-Pop-Star", "Pikachu-PhD", "Pikachu-Libre", "Pikachu-Original", "Pikachu-Hoenn", "Pikachu-Sinnoh", "Pikachu-Unova", "Pikachu-Kalos", "Pikachu-Alola", "Pikachu-Partner", "Pikachu-Starter", "Pikachu-World", "Pikachu-Zeta"],
 		formeOrder: [
 			"Pikachu",
 			"Pikachu-Original", "Pikachu-Hoenn", "Pikachu-Sinnoh", "Pikachu-Unova", "Pikachu-Kalos", "Pikachu-Alola", "Pikachu-Partner", // Gen 7 formes
 			"Pikachu-Starter", // forme 8 in LGPE
 			"Pikachu-World", // Gen 8 forme (indexed as Pikachu 9 in datamine)
 			"Pikachu-Rock-Star", "Pikachu-Belle", "Pikachu-Pop-Star", "Pikachu-PhD", "Pikachu-Libre", "Pikachu-Cosplay", // formes 1-6 from Gen 6
+			"Pikachu-Zeta", // formes 1-6 from Gen 6
 		],
 		canGigantamax: "G-Max Volt Crash",
 	},
@@ -789,6 +790,20 @@ export const Pokedex: import('../sim/dex-species').SpeciesDataTable = {
 		color: "Yellow",
 		eggGroups: ["Undiscovered"],
 		gen: 8,
+	},
+	pikachuz: {
+		num: 25,
+		name: "Pikachu-Zeta",
+		baseSpecies: "Pikachu",
+		forme: "Zeta",
+		types: ["Electric", "Poison"],
+		gender: "M",
+		baseStats: { hp: 45, atk: 65, def: 40, spa: 90, spd: 50, spe: 50 },
+		abilities: { 0: "Poison Touch", H: "Poison Point" },
+		heightm: 0.4,
+		weightkg: 6.0,
+		color: "Yellow",
+		eggGroups: ["Undiscovered"],
 	},
 	raichu: {
 		num: 26,
@@ -1210,9 +1225,9 @@ export const Pokedex: import('../sim/dex-species').SpeciesDataTable = {
 	paras: {
 		num: 46,
 		name: "Paras",
-		types: ["Bug", "Grass"],
-		baseStats: { hp: 35, atk: 70, def: 55, spa: 45, spd: 55, spe: 25 },
-		abilities: { 0: "Effect Spore", 1: "Dry Skin", H: "Damp" },
+		types: ["Bug", "Psychic"],
+		baseStats: { hp: 55, atk: 45, def: 55, spa: 70, spd: 55, spe: 25 },
+		abilities: { 0: "Effect Spore", H: "Neuroforce" },
 		heightm: 0.3,
 		weightkg: 5.4,
 		color: "Red",
