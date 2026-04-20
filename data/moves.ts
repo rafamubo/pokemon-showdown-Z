@@ -224,7 +224,7 @@ export const Moves: import('../sim/dex-moves').MoveDataTable = {
 		name: "Agility",
 		pp: 30,
 		priority: 0,
-		flags: { snatch: 1, metronome: 1 },
+		flags: { snatch: 1, metronome: 1, trucohuevo: 1 },
 		boosts: {
 			spe: 2,
 		},
@@ -2744,7 +2744,7 @@ export const Moves: import('../sim/dex-moves').MoveDataTable = {
 		name: "Confusion",
 		pp: 25,
 		priority: 0,
-		flags: { protect: 1, mirror: 1, metronome: 1 },
+		flags: { protect: 1, mirror: 1, metronome: 1, trucohuevo: 1 },
 		secondary: {
 			chance: 10,
 			volatileStatus: 'confusion',
@@ -6393,7 +6393,7 @@ export const Moves: import('../sim/dex-moves').MoveDataTable = {
 		name: "Future Sight",
 		pp: 10,
 		priority: 0,
-		flags: { allyanim: 1, metronome: 1, futuremove: 1 },
+		flags: { allyanim: 1, metronome: 1, futuremove: 1, trucohuevo: 1 },
 		ignoreImmunity: true,
 		onTry(source, target) {
 			if (!target.side.addSlotCondition(target, 'futuremove')) return false;
@@ -9220,7 +9220,7 @@ export const Moves: import('../sim/dex-moves').MoveDataTable = {
 		name: "Hypnosis",
 		pp: 20,
 		priority: 0,
-		flags: { protect: 1, reflectable: 1, mirror: 1, metronome: 1 },
+		flags: { protect: 1, reflectable: 1, mirror: 1, metronome: 1, trucohuevo: 1 },
 		status: 'slp',
 		target: "normal",
 		type: "Psychic",
@@ -9888,7 +9888,7 @@ export const Moves: import('../sim/dex-moves').MoveDataTable = {
 		name: "Kinesis",
 		pp: 15,
 		priority: 0,
-		flags: { protect: 1, reflectable: 1, mirror: 1, metronome: 1 },
+		flags: { protect: 1, reflectable: 1, mirror: 1, metronome: 1, trucohuevo: 1 },
 		boosts: {
 			accuracy: -1,
 		},
@@ -14010,7 +14010,7 @@ export const Moves: import('../sim/dex-moves').MoveDataTable = {
 		name: "Psybeam",
 		pp: 20,
 		priority: 0,
-		flags: { protect: 1, mirror: 1, metronome: 1 },
+		flags: { protect: 1, mirror: 1, metronome: 1, trucohuevo: 1 },
 		secondary: {
 			chance: 10,
 			volatileStatus: 'confusion',
@@ -14177,7 +14177,7 @@ export const Moves: import('../sim/dex-moves').MoveDataTable = {
 		name: "Psycho Cut",
 		pp: 20,
 		priority: 0,
-		flags: { protect: 1, mirror: 1, metronome: 1, slicing: 1 },
+		flags: { protect: 1, mirror: 1, metronome: 1, slicing: 1, trucohuevo: 1,  },
 		critRatio: 2,
 		target: "normal",
 		type: "Psychic",
@@ -14215,7 +14215,7 @@ export const Moves: import('../sim/dex-moves').MoveDataTable = {
 		name: "Psych Up",
 		pp: 10,
 		priority: 0,
-		flags: { bypasssub: 1, allyanim: 1, metronome: 1 },
+		flags: { bypasssub: 1, allyanim: 1, metronome: 1, trucohuevo: 1 },
 		onHit(target, source) {
 			let i: BoostID;
 			for (i in target.boosts) {
@@ -18128,7 +18128,7 @@ export const Moves: import('../sim/dex-moves').MoveDataTable = {
 		name: "Stored Power",
 		pp: 10,
 		priority: 0,
-		flags: { protect: 1, mirror: 1, metronome: 1 },
+		flags: { protect: 1, mirror: 1, metronome: 1, trucohuevo: 1 },
 		target: "normal",
 		type: "Psychic",
 		zMove: { basePower: 160 },
@@ -19955,7 +19955,7 @@ export const Moves: import('../sim/dex-moves').MoveDataTable = {
 		name: "Trick Room",
 		pp: 5,
 		priority: -7,
-		flags: { mirror: 1, metronome: 1 },
+		flags: { mirror: 1, metronome: 1, trucohuevo: 1 },
 		pseudoWeather: 'trickroom',
 		condition: {
 			duration: 5,
@@ -20984,7 +20984,7 @@ export const Moves: import('../sim/dex-moves').MoveDataTable = {
 		name: "Wonder Room",
 		pp: 10,
 		priority: 0,
-		flags: { mirror: 1, metronome: 1 },
+		flags: { mirror: 1, metronome: 1, trucohuevo: 1 },
 		pseudoWeather: 'wonderroom',
 		condition: {
 			duration: 5,
@@ -21332,5 +21332,37 @@ export const Moves: import('../sim/dex-moves').MoveDataTable = {
 		target: "normal",
 		type: "Fire",
 		contestType: "Beautiful",
+	},
+	trucohuevo: {
+		num: 1002,
+		accuracy: 100,
+		basePower: 70,
+		category: "Special",
+		name: "Truco Huevo",
+		pp: 15,
+		priority: 0,
+		flags: { protect: 1, mirror: 1, failencore: 1, nosleeptalk: 1, noassist: 1, failinstruct: 1 },
+		onHit(target, source, move) { // Añadimos target y source aquí
+			const moves = this.dex.moves.all().filter(m => (
+				(!m.isNonstandard || m.isNonstandard === 'Unobtainable') &&
+				m.flags['trucohuevo'] // Asegúrate de haber añadido esta flag a los movimientos que quieres invocar
+			));
+
+			let randomMove = '';
+			if (moves.length) {
+				moves.sort((a, b) => a.num - b.num);
+				randomMove = this.sample(moves).id;
+			}
+
+			if (!randomMove) return false;
+
+			// La clave está aquí: No pasamos 'target' al final.
+			// Al no pasar un objetivo fijo, el motor usa el target por defecto del movimiento elegido.
+			this.actions.useMove(randomMove, source); 
+		},
+		callsMove: true,
+		target: "normal",
+		type: "Water",
+		contestType: "Cute",
 	},
 };
