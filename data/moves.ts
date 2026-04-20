@@ -21315,4 +21315,22 @@ export const Moves: import('../sim/dex-moves').MoveDataTable = {
 		type: "Fire",
 		contestType: "Beautiful",
 	},
+	sableardiente: {
+		num: 1001,
+		accuracy: 100,
+		basePower: 80,
+		category: "Physical",
+		name: "Sable ardiente",
+		pp: 15,
+		priority: 0,
+		flags: { protect: 1, mirror: 1, metronome: 1 },
+		onBasePower(basePower, pokemon, target) {
+			if (target.status === 'par') {
+				return this.chainModify(1.5);
+			}
+		},
+		target: "normal",
+		type: "Fire",
+		contestType: "Beautiful",
+	},
 };
