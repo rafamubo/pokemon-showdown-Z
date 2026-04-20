@@ -5664,4 +5664,39 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 		rating: 3,
 		num: -3,
 	},
+	formailusoria: {
+		onSwitchInPriority: -1,
+		onStart(pokemon) {
+			if (pokemon.transformed) return;
+			if (pokemon.hp >= (pokemon.maxhp / 4) * 3) {
+				if (pokemon.species.id === 'greninjazeta') {
+					pokemon.formeChange('Greninja-Zeta-Ilusorio');
+					this.boost({ evasion: 1 });
+				}
+			} else {
+				if (pokemon.species.id === 'greninjazetailusorio') {
+					pokemon.formeChange('Greninja-Zeta');
+				}
+			}
+		},
+		onResidualOrder: 29,
+		onResidual(pokemon) {
+			if (pokemon.transformed || !pokemon.hp) return;
+			if (pokemon.hp < (pokemon.maxhp / 4) * 3) {
+				if (pokemon.species.id === 'greninjazetailusorio') {
+					pokemon.formeChange('Greninja-Zeta');
+					this.boost({ evasion: -1 });
+				}
+			} else {
+				if (pokemon.species.id === 'greninjazeta') {
+					pokemon.formeChange('Greninja-Zeta-Ilusorio');
+					this.boost({ evasion: 1 });
+				}
+			}
+		},
+		flags: { failroleplay: 1, noreceiver: 1, noentrain: 1, notrace: 1, failskillswap: 1, cantsuppress: 1 },
+		name: "Forma Ilusoria",
+		rating: 3,
+		num: 1002,
+	},
 };
