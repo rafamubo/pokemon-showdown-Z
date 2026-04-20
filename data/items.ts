@@ -8164,4 +8164,55 @@ export const Items: import('../sim/dex-items').ItemDataTable = {
 		gen: 8,
 		isNonstandard: "CAP",
 	},
+	clearamuletzeta: {
+		name: "Clear Amulet Zeta",
+		spritenum: 747,
+		fling: {
+			basePower: 30,
+		},
+		onTryBoostPriority: 1,
+		onTryBoost(boost, target, source, effect) {
+			if (source && target === source) return;
+			let showMsg = false;
+			let i: BoostID;
+			for (i in boost) {
+				if (boost[i]! < 0) {
+					delete boost[i];
+					showMsg = true;
+				}
+			}
+			if (showMsg && !(effect as ActiveMove).secondaries && effect.id !== 'octolock') {
+				this.add('-fail', target, 'unboost', '[from] item: Clear Amulet', `[of] ${target}`);
+			}
+		},
+		onModifyDefPriority: 2,
+		onModifyDef(def, pokemon) {
+			if (pokemon.baseSpecies.nfe) {
+				return this.chainModify(1.1);
+			}
+		},
+		onModifySpDPriority: 2,
+		onModifySpD(spd, pokemon) {
+			if (pokemon.baseSpecies.nfe) {
+				return this.chainModify(1.1);
+			}
+		},
+		num: 3001,
+		gen: 9,
+	},
+	anillosanguineo: {
+		name: "Anillo Sanguineo",
+		spritenum: 357,
+		fling: {
+			basePower: 30,
+		},
+		onModifyDamage(damage, source, target, move) {
+			if (target.getMoveHitData(move).crit) {
+				this.debug('Sniper boost');
+				return this.chainModify(1.4);
+			}
+		},
+		num: 3002,
+		gen: 9,
+	},
 };
