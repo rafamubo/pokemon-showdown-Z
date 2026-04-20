@@ -1225,9 +1225,9 @@ export const Pokedex: import('../sim/dex-species').SpeciesDataTable = {
 	paras: {
 		num: 46,
 		name: "Paras",
-		types: ["Bug", "Psychic"],
+		types: ["Bug", "Grass"],
 		baseStats: { hp: 55, atk: 45, def: 55, spa: 70, spd: 55, spe: 25 },
-		abilities: { 0: "Effect Spore", H: "Neuroforce" },
+		abilities: { 0: "Effect Spore", 1: "Dry Skin", H: "Damp" },
 		heightm: 0.3,
 		weightkg: 5.4,
 		color: "Red",
@@ -19596,6 +19596,19 @@ export const Pokedex: import('../sim/dex-species').SpeciesDataTable = {
 		tags: ["Mythical"],
 		eggGroups: ["Undiscovered"],
 	},
+	parasectz: {
+		num: 1026,
+		name: "Parasectz",
+		types: ["Bug", "Psychic"],
+		gender: "N",
+		baseStats: { hp: 88, atk: 88, def: 160, spa: 88, spd: 88, spe: 88 },
+		abilities: { 0: "Strange Presence" },
+		heightm: 0.3,
+		weightkg: 0.3,
+		color: "Purple",
+		tags: ["Mythical"],
+		eggGroups: ["Undiscovered"],
+	},	
 	missingno: {
 		num: 0,
 		name: "MissingNo.",
@@ -20988,4 +21001,5 @@ export const Pokedex: import('../sim/dex-species').SpeciesDataTable = {
 		eggGroups: ["Undiscovered"],
 		gen: 5,
 	},
+	
 };

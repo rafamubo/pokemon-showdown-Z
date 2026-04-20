@@ -5664,4 +5664,13 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 		rating: 3,
 		num: -3,
 	},
+	strangepresence: {
+        onStart(source) {
+            this.field.addPseudoWeather('trickroom');
+        },
+        flags: {},
+        name: "Strange Presence",
+        rating: 4.5,
+        num: 1001,
+    },
 };
