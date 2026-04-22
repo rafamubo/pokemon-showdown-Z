@@ -1115,6 +1115,10 @@ export const FormatsData: import('../sim/dex-species').SpeciesFormatsDataTable =
 	porygon: {
 		tier: "NFE",
 	},
+	porygonzeta: {
+        tier: "OU", // O la tier que prefieras (Uber, UU, LC, Illegal)
+        doublesTier: "DOU",
+    },
 	porygon2: {
 		tier: "PU",
 		doublesTier: "DUU",
