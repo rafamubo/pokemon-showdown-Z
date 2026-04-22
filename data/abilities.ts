@@ -5667,7 +5667,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 
 	strangepresence: {
         onStart(source) {
-            this.field.addPseudoWeather('trickroom');
+        	this.field.addPseudoWeather('trickroom');
         },
         flags: {},
         name: "Strange Presence",
@@ -5709,5 +5709,18 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 		name: "Forma Ilusoria",
 		rating: 3,
 		num: 1002,
+	},
+	realeza: {
+		onModifySTAB(stab, source, target, move) {
+			// Si el movimiento ya tiene un STAB mayor (por Adaptable o Teratipo), 
+			// lo respetamos. Si no, forzamos el 1.5.
+			if (stab < 1.5) {
+				return 1.5;
+			}
+		},
+		name: "Realeza",
+		rating: 4.5,
+		num: 1003,
+		flags: {},
 	},
 };
