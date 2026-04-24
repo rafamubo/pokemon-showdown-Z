@@ -8215,19 +8215,4 @@ export const Items: import('../sim/dex-items').ItemDataTable = {
 		num: 3002,
 		gen: 9,
 	},
-	bleed: {
-		name: "Bleed",
-		spritenum: 2000,
-		fling: {
-			basePower: 30,
-			status: 'bleed',
-		},
-		onResidualOrder: 28,
-		onResidualSubOrder: 3,
-		onResidual(pokemon) {
-			pokemon.trySetStatus('bleed', pokemon);
-		},
-		num: 272,
-		gen: 4,
-	},
 };
