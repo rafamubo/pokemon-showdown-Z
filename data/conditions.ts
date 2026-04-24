@@ -159,6 +159,22 @@ export const Conditions: import('../sim/dex-conditions').ConditionDataTable = {
 			this.damage(this.clampIntRange(pokemon.baseMaxhp / 16, 1) * this.effectState.stage);
 		},
 	},
+	bleed: {
+		name: 'bleed',
+		effectType: 'Status',
+		onStart(target, source, sourceEffect) {
+			if (sourceEffect && sourceEffect.effectType === 'Ability') {
+				this.add('-status', target, 'bleed', '[from] ability: ' + sourceEffect.name, `[of] ${source}`);
+			} else {
+				this.add('-status', target, 'bleed');
+			}
+		},
+		onSourceModifyCritRatio(critRatio, source, target) {
+			if (target.status === 'bleed') {
+            	return critRatio + 2;
+        	}
+		},
+	},
 	confusion: {
 		name: 'confusion',
 		// this is a volatile status
