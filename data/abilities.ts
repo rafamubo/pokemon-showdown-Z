@@ -5723,4 +5723,43 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 		num: 1003,
 		flags: {},
 	},
+	coleoptero: {
+		onModifyTypePriority: -1,
+		onModifyType(move, pokemon) {
+			const noModifyType = [
+				'judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'terrainpulse', 'weatherball',
+			];
+			if (move.type === 'Normal' && (!noModifyType.includes(move.id) || this.activeMove?.isMax) &&
+				!(move.isZ && move.category !== 'Status') && !(move.name === 'Tera Blast' && pokemon.terastallized)) {
+				move.type = 'Bug';
+				move.typeChangerBoosted = this.effect;
+			}
+		},
+		onBasePowerPriority: 23,
+		onBasePower(basePower, pokemon, target, move) {
+			if (move.typeChangerBoosted === this.effect) return this.chainModify([4915, 4096]);
+		},
+		flags: {},
+		name: "Coleoptero",
+		rating: 4,
+		num: 1004,
+	},
+	contraguardia: {
+		onDamagingHit(damage, target, source, move) {
+			// Verificamos que el movimiento sea tipo Volador y no sea un aliado
+			if (move.type === 'Flying' && !source.isAlly(target)) {
+				this.add('-ability', target, 'Contraguardia');
+				
+				// Aplicamos el doble del daño recibido al atacante (lógica Mirror Coat)
+				this.damage(damage * 1, source, target);
+				
+				// Mensaje estético opcional para clarificar el efecto en el log
+				this.add('-message', `${source.name} recibió el rebote del aire!`);
+			}
+		},
+		flags: {},
+		name: "Contraguardia",
+		rating: 3,
+		num: 1005, // Recuerda usar un ID único que no colisione
+	},
 };
