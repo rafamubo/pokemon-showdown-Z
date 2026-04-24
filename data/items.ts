@@ -8208,11 +8208,28 @@ export const Items: import('../sim/dex-items').ItemDataTable = {
 		},
 		onModifyDamage(damage, source, target, move) {
 			if (target.getMoveHitData(move).crit) {
-				this.debug('Sniper boost');
+				this.debug('Anillo Sanguineo boost');
 				return this.chainModify(1.4);
 			}
 		},
 		num: 3002,
+		gen: 9,
+	},
+	nudillopuas: {
+		name: "Nudillo Puas",
+		spritenum: 357,
+		fling: {
+			basePower: 30,
+		},
+		onSourceDamagingHit(damage, target, source, move) {
+			// Despite not being a secondary, Shield Dust / Covert Cloak block Toxic Chain's effect
+			if (target.hasAbility('shielddust') || target.hasItem('covertcloak')) return;
+
+			if (this.randomChance(3, 10)) {
+				target.trySetStatus('bleed', source);
+			}
+		},
+		num: 3003,
 		gen: 9,
 	},
 };
