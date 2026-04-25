@@ -2109,9 +2109,11 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 			if (status.id === 'flinch') return null;
 		},
 		onTryBoost(boost, target, source, effect) {
-			if (effect.name === 'Intimidate' && boost.atk) {
-				delete boost.atk;
-				this.add('-fail', target, 'unboost', 'Attack', '[from] ability: Inner Focus', `[of] ${target}`);
+			if ((effect.name === 'Intimidate' || effect.name === 'Espanto') && (boost.atk || boost.spa)) {
+				if (boost.atk) delete boost.atk;
+				if (boost.spa) delete boost.spa;
+				const stat = boost.atk ? 'Attack' : 'Special Attack';
+				this.add('-fail', target, 'unboost', stat, '[from] ability: Inner Focus', `[of] ${target}`);
 			}
 		},
 		flags: { breakable: 1 },
@@ -2982,9 +2984,11 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 			}
 		},
 		onTryBoost(boost, target, source, effect) {
-			if (effect.name === 'Intimidate' && boost.atk) {
-				delete boost.atk;
-				this.add('-fail', target, 'unboost', 'Attack', '[from] ability: Oblivious', `[of] ${target}`);
+			if ((effect.name === 'Intimidate' || effect.name === 'Espanto') && (boost.atk || boost.spa)) {
+				if (boost.atk) delete boost.atk;
+				if (boost.spa) delete boost.spa;
+				const stat = boost.atk ? 'Attack' : 'Special Attack';
+				this.add('-fail', target, 'unboost', stat, '[from] ability: Oblivious', `[of] ${target}`);
 			}
 		},
 		flags: { breakable: 1 },
@@ -3111,9 +3115,11 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 			}
 		},
 		onTryBoost(boost, target, source, effect) {
-			if (effect.name === 'Intimidate' && boost.atk) {
-				delete boost.atk;
-				this.add('-fail', target, 'unboost', 'Attack', '[from] ability: Own Tempo', `[of] ${target}`);
+			if ((effect.name === 'Intimidate' || effect.name === 'Espanto') && (boost.atk || boost.spa)) {
+				if (boost.atk) delete boost.atk;
+				if (boost.spa) delete boost.spa;
+				const stat = boost.atk ? 'Attack' : 'Special Attack';
+				this.add('-fail', target, 'unboost', stat, '[from] ability: Own Tempo', `[of] ${target}`);
 			}
 		},
 		flags: { breakable: 1 },
@@ -3729,8 +3735,8 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 			}
 		},
 		onAfterBoost(boost, target, source, effect) {
-			if (effect?.name === 'Intimidate' && boost.atk) {
-				this.boost({ spe: 1 });
+        	if (effect && (effect.name === 'Intimidate' || effect.name === 'Espanto') && (boost.atk || boost.spa)) {
+    			this.boost({spe: 1});
 			}
 		},
 		flags: {},
@@ -4040,9 +4046,11 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 			}
 		},
 		onTryBoost(boost, target, source, effect) {
-			if (effect.name === 'Intimidate' && boost.atk) {
-				delete boost.atk;
-				this.add('-fail', target, 'unboost', 'Attack', '[from] ability: Scrappy', `[of] ${target}`);
+			if ((effect.name === 'Intimidate' || effect.name === 'Espanto') && (boost.atk || boost.spa)) {
+				if (boost.atk) delete boost.atk;
+				if (boost.spa) delete boost.spa;
+				const stat = boost.atk ? 'Attack' : 'Special Attack';
+				this.add('-fail', target, 'unboost', stat, '[from] ability: Scrappy', `[of] ${target}`);
 			}
 		},
 		flags: {},
@@ -5712,8 +5720,6 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 	},
 	realeza: {
 		onModifySTAB(stab, source, target, move) {
-			// Si el movimiento ya tiene un STAB mayor (por Adaptable o Teratipo), 
-			// lo respetamos. Si no, forzamos el 1.5.
 			if (stab < 1.5) {
 				return 1.5;
 			}
@@ -5754,11 +5760,11 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 					return null;
 				}
 				this.add('-immune', target, '[from] ability: Contraguardia');
-				this.damage(damage, source, target);				
+				this.damage(damage, source, target);
 				return null; 
 			}
 		},
-		flags: {breakChainedModifiable: 1},
+		flags: { breakable: 1 },
 		name: "Contraguardia",
 		rating: 5,
 		num: 1005,
@@ -5767,17 +5773,35 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 		onTryHit(target, source, move) {
 			if (target !== source && move.type === 'Fire') {
 				this.add('-ability', target, 'Despierta Llama');
-				// Intentamos subir el Ataque Especial un nivel (+1)
-				if (!this.boost({spa: 1})) {
-					// Si ya está al máximo (+6), solo mostramos que es inmune
+				if (!this.boost({ spa: 1 })) {
 					this.add('-immune', target, '[from] ability: Despierta Llama');
 				}
-				return null; // Anula el ataque por completo
+				return null; 
 			}
 		},
-		flags: {breakChainedModifiable: 1},
+		flags: { breakable: 1 },
 		name: "Despierta Llama",
 		rating: 3.5,
-		num: 1006, // Asegúrate de que este número sea único en tu archivo
+		num: 1006, 
+	},
+	espanto: {
+		onStart(pokemon) {
+			let activated = false;
+			for (const target of pokemon.adjacentFoes()) {
+				if (!activated) {
+					this.add('-ability', pokemon, 'Espanto', 'boost');
+					activated = true;
+				}
+				if (target.volatiles['substitute']) {
+					this.add('-immune', target);
+				} else {
+					this.boost({ spa: -1 }, target, pokemon, null, true);
+				}
+			}
+		},
+		flags: {},
+		name: "Espanto",
+		rating: 3.5,
+		num: 1007,
 	},
 };
