@@ -5758,9 +5758,26 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 				return null; 
 			}
 		},
-		flags: {},
+		flags: {breakChainedModifiable: 1},
 		name: "Contraguardia",
 		rating: 5,
 		num: 1005,
+	},
+	despiertallama: {
+		onTryHit(target, source, move) {
+			if (target !== source && move.type === 'Fire') {
+				this.add('-ability', target, 'Despierta Llama');
+				// Intentamos subir el Ataque Especial un nivel (+1)
+				if (!this.boost({spa: 1})) {
+					// Si ya está al máximo (+6), solo mostramos que es inmune
+					this.add('-immune', target, '[from] ability: Despierta Llama');
+				}
+				return null; // Anula el ataque por completo
+			}
+		},
+		flags: {breakChainedModifiable: 1},
+		name: "Despierta Llama",
+		rating: 3.5,
+		num: 1006, // Asegúrate de que este número sea único en tu archivo
 	},
 };
