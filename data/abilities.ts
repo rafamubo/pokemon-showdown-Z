@@ -3735,8 +3735,8 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 			}
 		},
 		onAfterBoost(boost, target, source, effect) {
-        	if (effect && (effect.name === 'Intimidate' || effect.name === 'Espanto') && (boost.atk || boost.spa)) {
-    			this.boost({spe: 1});
+			if (effect && (effect.name === 'Intimidate' || effect.name === 'Espanto') && (boost.atk || boost.spa)) {
+				this.boost({ spe: 1 });
 			}
 		},
 		flags: {},
@@ -5666,7 +5666,6 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 	},
 	persistent: {
 		isNonstandard: "CAP",
-		// implemented in the corresponding move
 		flags: {},
 		name: "Persistent",
 		rating: 3,
@@ -5674,10 +5673,10 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 	},
 
 	strangepresence: {
-        onStart(source) {
+		onStart(source) {
         	this.field.addPseudoWeather('trickroom');
         },
-        flags: {},
+    	flags: {},
         name: "Strange Presence",
         rating: 4.5,
         num: 1001,
