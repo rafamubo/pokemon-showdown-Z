@@ -5745,21 +5745,22 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 		num: 1004,
 	},
 	contraguardia: {
-		onDamagingHit(damage, target, source, move) {
-			// Verificamos que el movimiento sea tipo Volador y no sea un aliado
-			if (move.type === 'Flying' && !source.isAlly(target)) {
+		onTryHit(target, source, move) {
+			if (target !== source && move.type === 'Flying') {
 				this.add('-ability', target, 'Contraguardia');
-				
-				// Aplicamos el doble del daño recibido al atacante (lógica Mirror Coat)
-				this.damage(damage * 1, source, target);
-				
-				// Mensaje estético opcional para clarificar el efecto en el log
-				this.add('-message', `${source.name} recibió el rebote del aire!`);
+				const damage = this.actions.getDamage(source, target, move);				
+				if (!damage || damage === 0) {
+					this.add('-immune', target, '[from] ability: Contraguardia');
+					return null;
+				}
+				this.add('-immune', target, '[from] ability: Contraguardia');
+				this.damage(damage, source, target);				
+				return null; 
 			}
 		},
 		flags: {},
 		name: "Contraguardia",
-		rating: 3,
-		num: 1005, // Recuerda usar un ID único que no colisione
+		rating: 5,
+		num: 1005,
 	},
 };

@@ -7694,9 +7694,9 @@ export const Pokedex: import('../sim/dex-species').SpeciesDataTable = {
 		evos: ["Kricketune"],
 		eggGroups: ["Bug"],
 		otherFormes: ["Kricketot-Zeta"],
-		formeOrder: ["Kricketot", "Kricketot-Zeta"]
+		formeOrder: ["Kricketot", "Kricketot-Zeta"],
 	},
-	kricketotz:{
+	kricketotzeta:{
 		num: 401,
 		name: "Kricketot-Zeta",
 		baseSpecies: "Kricketot",
@@ -7723,9 +7723,9 @@ export const Pokedex: import('../sim/dex-species').SpeciesDataTable = {
 		evoLevel: 10,
 		eggGroups: ["Bug"],
 		otherFormes: ["Kricketune-Zeta"],
-		formeOrder: ["Kricketune", "Kricketune-Zeta"]
+		formeOrder: ["Kricketune", "Kricketune-Zeta"],
 	},
-	kricketunez:{
+	kricketunezeta: {
 		num: 402,
 		name: "Kricketune-Zeta",
 		baseSpecies: "Kricketune",
