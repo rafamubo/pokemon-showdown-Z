@@ -21323,7 +21323,7 @@ export const Moves: import('../sim/dex-moves').MoveDataTable = {
 		name: "Sable ardiente",
 		pp: 15,
 		priority: 0,
-		flags: { protect: 1, mirror: 1, metronome: 1 },
+		flags: { contact: 1, protect: 1, mirror: 1, metronome: 1 },
 		onBasePower(basePower, pokemon, target) {
 			if (target.status === 'par') {
 				return this.chainModify(1.5);
@@ -21364,5 +21364,22 @@ export const Moves: import('../sim/dex-moves').MoveDataTable = {
 		target: "normal",
 		type: "Water",
 		contestType: "Cute",
+	},
+	disparoespina: {
+		num: 1003,
+		accuracy: 100,
+		basePower: 90,
+		category: "Physical",
+		name: "Disparo Espina",
+		pp: 15,
+		priority: 0,
+		flags: { protect: 1, mirror: 1, metronome: 1 },
+		critRatio: 2,
+		onEffectiveness(typeMod, target, type) {
+			if (type === 'Flying') return 1;
+		},
+		target: "normal",
+		type: "Grass",
+		contestType: "Beautiful",
 	},
 };

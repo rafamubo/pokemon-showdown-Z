@@ -5671,7 +5671,6 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 		rating: 3,
 		num: -3,
 	},
-
 	strangepresence: {
 		onStart(source) {
         	this.field.addPseudoWeather('trickroom');
@@ -5681,7 +5680,6 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
         rating: 4.5,
         num: 1001,
     },
-
 	formailusoria: {
 		onSwitchInPriority: -1,
 		onStart(pokemon) {
@@ -5802,5 +5800,20 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 		name: "Espanto",
 		rating: 3.5,
 		num: 1007,
+	},
+	relampagueo: {
+		onSourceDamagingHit(damage, target, source, move) {
+			// Despite not being a secondary, Shield Dust / Covert Cloak block Relampagueo's effect
+			if (target.hasAbility('shielddust') || target.hasItem('covertcloak')) return;
+			if (this.checkMoveMakesContact(move, target, source)) {
+				if (this.randomChance(3, 10)) {
+					target.trySetStatus('par', source);
+				}
+			}
+		},
+		flags: {},
+		name: "Relampagueo",
+		rating: 2,
+		num: 1008,
 	},
 };
