@@ -21367,8 +21367,8 @@ export const Moves: import('../sim/dex-moves').MoveDataTable = {
 	},
 	disparoespina: {
 		num: 1003,
-		accuracy: 100,
-		basePower: 90,
+		accuracy: 95,
+		basePower: 80,
 		category: "Physical",
 		name: "Disparo Espina",
 		pp: 15,
