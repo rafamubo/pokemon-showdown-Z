@@ -1786,7 +1786,7 @@ export const Moves: import('../sim/dex-moves').MoveDataTable = {
 	breakingswipe: {
 		num: 784,
 		accuracy: 100,
-		basePower: 60,
+		basePower: 70,
 		category: "Physical",
 		name: "Breaking Swipe",
 		pp: 15,
@@ -11733,7 +11733,7 @@ export const Moves: import('../sim/dex-moves').MoveDataTable = {
 	meteorbeam: {
 		num: 800,
 		accuracy: 90,
-		basePower: 120,
+		basePower: 130,
 		category: "Special",
 		name: "Meteor Beam",
 		pp: 10,
@@ -20131,10 +20131,10 @@ export const Moves: import('../sim/dex-moves').MoveDataTable = {
 	twinbeam: {
 		num: 888,
 		accuracy: 100,
-		basePower: 40,
+		basePower: 50,
 		category: "Special",
 		name: "Twin Beam",
-		pp: 10,
+		pp: 15,
 		priority: 0,
 		flags: { protect: 1, mirror: 1 },
 		multihit: 2,
@@ -21367,8 +21367,8 @@ export const Moves: import('../sim/dex-moves').MoveDataTable = {
 	},
 	disparoespina: {
 		num: 1003,
-		accuracy: 100,
-		basePower: 90,
+		accuracy: 95,
+		basePower: 80,
 		category: "Physical",
 		name: "Disparo Espina",
 		pp: 15,
@@ -21381,5 +21381,35 @@ export const Moves: import('../sim/dex-moves').MoveDataTable = {
 		target: "normal",
 		type: "Grass",
 		contestType: "Beautiful",
+	},
+	eclipse: {
+		num: 1004,
+		accuracy: 100,
+		basePower: 90,
+		category: "Physical", // Categoría por defecto
+		name: "Eclipse",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1}, 
+		onModifyMove(move, pokemon) {
+			if (pokemon.species.name === 'Constellar-Lunar') {
+				move.category = 'Special';
+			} else {
+				move.category = 'Physical';
+			}
+		},
+		onHit(target, pokemon, move) {
+			if (pokemon.baseSpecies.baseSpecies === 'Constellar') {
+				const targetForme = pokemon.species.name === 'Constellar-Lunar' ? 'Constellar' : 'Constellar-Lunar';
+				pokemon.formeChange(targetForme, this.effect, true);
+				this.add('-formechange', pokemon, targetForme, '[msg]');
+			}
+		},
+
+		secondary: null,
+		target: "normal",
+		type: "Rock",
+		desc: "Cambia a Constellar entre forma solar y lunar. Este mov. es físico o especial en función de la forma.",
+		shortDesc: "Cambia de forma. Físico o Especial según la forma.",
 	},
 };
