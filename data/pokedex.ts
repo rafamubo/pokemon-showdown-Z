@@ -21409,4 +21409,17 @@ export const Pokedex: import('../sim/dex-species').SpeciesDataTable = {
 		evoType: "useItem",
 		eggGroups: ["Field"],
 	},	
+	gourmaus: {
+		num: 2003, 
+		name: "Gourmaus",
+		types: ["Normal", "Fairy"],  
+		genderRatio: { M: 0.875, F: 0.125 },
+		baseStats: { hp: 130, atk: 115, def: 80, spa: 55, spd: 90, spe: 55 }, 
+		abilities: { 0: "Thick Fat", H: "Gluttony" }, 
+		heightm: 0.6,
+		weightkg: 12.0,
+		color: "Pink",
+		prevo: "Tandemaus",
+		eggGroups: ["Field", "Fairy"],
+	},
 };
