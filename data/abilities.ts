@@ -5827,7 +5827,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 			if (pokemon.activeTurns && this.effectState.counter) {
 				this.effectState.counter--;
 				if (!this.effectState.counter) {
-					this.add('-end', pokemon, 'Slow Start');
+					this.add('-end', pokemon, 'Acometida');
 					delete this.effectState.counter;
 				}
 			}

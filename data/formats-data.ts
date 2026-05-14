@@ -6254,4 +6254,13 @@ export const FormatsData: import('../sim/dex-species').SpeciesFormatsDataTable =
 		isNonstandard: "Custom",
 		tier: "Illegal",
 	},
+	constellar: {
+		tier: "OU",
+		doublesTier: "DOU",
+	},
+
+	"constellarlunar": {
+		tier: "OU",
+		doublesTier: "DOU",
+	},
 };

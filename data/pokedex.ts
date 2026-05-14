@@ -21433,7 +21433,7 @@ export const Pokedex: import('../sim/dex-species').SpeciesDataTable = {
 		prevo: "Solrock",
 		eggGroups: ["Mineral"],
 		otherFormes: ["Constellar-Lunar"],
-		formeOrder: ["Constellar-Lunar"],
+		formeOrder: [ "Constellar", "Constellar-Lunar"],
 		gen: 9,
 	},
 	constellarlunar: {
@@ -21466,7 +21466,7 @@ export const Pokedex: import('../sim/dex-species').SpeciesDataTable = {
 		eggGroups: ["Human-Like"],
 	},
 	serdupla: {
-		num: 336,
+		num: 2006,
 		name: "Serdupla",
 		types: ["Poison", "Dragon"],
 		baseStats: { hp: 93, atk: 115, def: 70, spa: 90, spd: 70, spe: 85 },
