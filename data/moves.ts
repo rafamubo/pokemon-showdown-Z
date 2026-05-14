@@ -243,6 +243,10 @@ export const Moves: import('../sim/dex-moves').MoveDataTable = {
 		priority: 0,
 		flags: { protect: 1, mirror: 1, metronome: 1, slicing: 1, wind: 1 },
 		critRatio: 2,
+		secondary: {
+			chance: 30,
+			status: 'bleed',
+		},
 		target: "allAdjacentFoes",
 		type: "Flying",
 		contestType: "Cool",
@@ -20345,21 +20349,18 @@ export const Moves: import('../sim/dex-moves').MoveDataTable = {
 	},
 	venomdrench: {
 		num: 599,
-		accuracy: 100,
+		accuracy: 85,
 		basePower: 0,
 		category: "Status",
 		isNonstandard: "Past",
 		name: "Venom Drench",
-		pp: 20,
+		pp: 5,
 		priority: 0,
 		flags: { protect: 1, reflectable: 1, mirror: 1, metronome: 1 },
-		onHit(target, source, move) {
-			if (target.status === 'psn' || target.status === 'tox') {
-				return !!this.boost({ atk: -1, spa: -1, spe: -1 }, target, source, move);
-			}
-			return false;
+		boosts: {
+			atk: -1, spa: -1, spe: -1
 		},
-		target: "allAdjacentFoes",
+		target: "normal",
 		type: "Poison",
 		zMove: { boost: { def: 1 } },
 		contestType: "Clever",
@@ -21405,11 +21406,25 @@ export const Moves: import('../sim/dex-moves').MoveDataTable = {
 				this.add('-formechange', pokemon, targetForme, '[msg]');
 			}
 		},
-
-		secondary: null,
 		target: "normal",
 		type: "Rock",
 		desc: "Cambia a Constellar entre forma solar y lunar. Este mov. es físico o especial en función de la forma.",
 		shortDesc: "Cambia de forma. Físico o Especial según la forma.",
+	},
+	dulcefestin: {
+		num: 562,
+		accuracy: 95,
+		basePower: 110,
+		category: "Physical",
+		name: "Dulce Festin",
+		pp: 10,
+		priority: 0,
+		flags: { protect: 1, failmefirst: 1, nosleeptalk: 1, noassist: 1, failcopycat: 1, failmimic: 1, failinstruct: 1 },
+		onDisableMove(pokemon) {
+			if (!pokemon.ateBerry) pokemon.disableMove('dulcefestin');
+		},
+		target: "normal",
+		type: "Fairy",
+		contestType: "Tough",
 	},
 };
