@@ -3806,7 +3806,7 @@ export const Pokedex: import('../sim/dex-species').SpeciesDataTable = {
 		num: 168,
 		name: "Ariados",
 		types: ["Bug", "Poison"],
-		baseStats: { hp: 70, atk: 90, def: 70, spa: 60, spd: 70, spe: 40 },
+		baseStats: { hp: 80, atk: 110, def: 70, spa: 60, spd: 70, spe: 70 }, //+10hp, 20atk, +30spe
 		abilities: { 0: "Swarm", 1: "Insomnia", H: "Sniper" },
 		heightm: 1.1,
 		weightkg: 33.5,
@@ -8735,7 +8735,7 @@ export const Pokedex: import('../sim/dex-species').SpeciesDataTable = {
 		num: 465,
 		name: "Tangrowth",
 		types: ["Grass"],
-		baseStats: { hp: 100, atk: 100, def: 125, spa: 110, spd: 50, spe: 50 },
+		baseStats: { hp: 100, atk: 110, def: 125, spa: 110, spd: 50, spe: 40 }, //+10atk, -10spe
 		abilities: { 0: "Chlorophyll", 1: "Leaf Guard", H: "Regenerator" },
 		heightm: 2,
 		weightkg: 128.6,
@@ -21475,5 +21475,16 @@ export const Pokedex: import('../sim/dex-species').SpeciesDataTable = {
 		weightkg: 52.5,
 		color: "Black",
 		eggGroups: ["Field", "Dragon"],
+	},
+	halcombate: {
+		num: 2007,
+		name: "Halcombate",
+		types: ["Fighting", "Flying"],
+		baseStats: { hp: 93, atk: 120, def: 85, spa: 86, spd: 78, spe: 103 },
+		abilities: { 0: "Aerilate", 1: "Limber", H: "Mold Breaker" },
+		heightm: 1.4,
+		weightkg: 45.5,
+		color: "Green",
+		eggGroups: ["Flying", "Human-Like"],
 	},
 };

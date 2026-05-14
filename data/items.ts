@@ -8229,4 +8229,17 @@ export const Items: import('../sim/dex-items').ItemDataTable = {
 		num: 3004,
 		gen: 9,
 	},
+	telasilvana: {
+		name: "Tela Silvana",
+		spritenum: 610,
+		onPlate: 'Fairy',
+		onBasePowerPriority: 15,
+		onBasePower(basePower, user, target, move) {
+			if (move && move.type === 'Fairy') {
+				return this.chainModify([4915, 4096]);
+			}
+		},
+		num: 3005,
+		gen: 6,
+	},
 };

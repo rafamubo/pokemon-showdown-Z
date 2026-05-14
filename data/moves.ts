@@ -13154,7 +13154,7 @@ export const Moves: import('../sim/dex-moves').MoveDataTable = {
 	paraboliccharge: {
 		num: 570,
 		accuracy: 100,
-		basePower: 65,
+		basePower: 70,
 		category: "Special",
 		name: "Parabolic Charge",
 		pp: 20,
@@ -16110,7 +16110,7 @@ export const Moves: import('../sim/dex-moves').MoveDataTable = {
 	shadowpunch: {
 		num: 325,
 		accuracy: true,
-		basePower: 60,
+		basePower: 80,
 		category: "Physical",
 		name: "Shadow Punch",
 		pp: 20,
@@ -18173,14 +18173,20 @@ export const Moves: import('../sim/dex-moves').MoveDataTable = {
 	strength: {
 		num: 70,
 		accuracy: 100,
-		basePower: 80,
+		basePower: 100,
 		category: "Physical",
 		name: "Strength",
-		pp: 15,
+		pp: 5,
 		priority: 0,
 		flags: { contact: 1, protect: 1, mirror: 1, metronome: 1 },
+		self: {
+			boosts: {
+				def: -1,
+				spd: -1,
+			},
+		},
 		target: "normal",
-		type: "Normal",
+		type: "Rock",
 		contestType: "Tough",
 	},
 	strengthsap: {
@@ -21412,7 +21418,7 @@ export const Moves: import('../sim/dex-moves').MoveDataTable = {
 		shortDesc: "Cambia de forma. Físico o Especial según la forma.",
 	},
 	dulcefestin: {
-		num: 562,
+		num: 1005,
 		accuracy: 95,
 		basePower: 110,
 		category: "Physical",
@@ -21426,5 +21432,18 @@ export const Moves: import('../sim/dex-moves').MoveDataTable = {
 		target: "normal",
 		type: "Fairy",
 		contestType: "Tough",
+	},
+	estenoeshp: {
+		num: 1006,
+		accuracy: 100,
+		basePower: 60,
+		category: "Special",
+		isNonstandard: "Past",
+		name: "Este no es HP",
+		pp: 15,
+		priority: 0,
+		flags: { protect: 1, mirror: 1, metronome: 1 },
+		target: "normal",
+		type: "Water",
 	},
 };
