@@ -5816,4 +5816,56 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 		rating: 2,
 		num: 1008,
 	},
+	acometida: {
+		onStart(pokemon) {
+			this.add('-start', pokemon, 'ability: Acometida');
+			this.effectState.counter = 1;
+		},
+		onResidualOrder: 28,
+		onResidualSubOrder: 2,
+		onResidual(pokemon) {
+			if (pokemon.activeTurns && this.effectState.counter) {
+				this.effectState.counter--;
+				if (!this.effectState.counter) {
+					this.add('-end', pokemon, 'Slow Start');
+					delete this.effectState.counter;
+				}
+			}
+		},
+		onModifyAtkPriority: 5,
+		onModifyAtk(atk, pokemon) {
+			if (this.effectState.counter) {
+				return this.chainModify(1.2);
+			}
+		},
+		onModifySpe(spe, pokemon) {
+			if (this.effectState.counter) {
+				return this.chainModify(1.5);
+			}
+		},
+		onEnd(pokemon) {
+			if (pokemon.beingCalledBack) return;
+			this.add('-end', pokemon, 'Acometida', '[silent]');
+		},
+		flags: {},
+		name: "Acometida",
+		rating: 3,
+		num: 1009,
+	},
+	granpesadilla: {
+		onResidualOrder: 28,
+		onResidualSubOrder: 2,
+		onResidual(pokemon) {
+			if (!pokemon.hp) return;
+			for (const target of pokemon.foes()) {
+				if (target.status === 'slp' || target.hasAbility('comatose')) {
+					this.damage(target.baseMaxhp / 4, target, pokemon);
+				}
+			}
+		},
+		flags: {},
+		name: "Gran Pesadilla",
+		rating: 1.5,
+		num: 123,
+	},
 };
