@@ -8242,4 +8242,25 @@ export const Items: import('../sim/dex-items').ItemDataTable = {
 		num: 3005,
 		gen: 6,
 	},
+	corazaasalto: {
+		name: "Coraza Asalto",
+		spritenum: 611,
+		fling: {
+			basePower: 80,
+		},
+		onModifySpDPriority: 1,
+		onModifySpD(def) {
+			return this.chainModify(1.4);
+		},
+		onDisableMove(pokemon) {
+			for (const moveSlot of pokemon.moveSlots) {
+				const move = this.dex.moves.get(moveSlot.id);
+				if (move.category === 'Status' && move.id !== 'mefirst') {
+					pokemon.disableMove(moveSlot.id);
+				}
+			}
+		},
+		num: 640,
+		gen: 6,
+	},	
 };
