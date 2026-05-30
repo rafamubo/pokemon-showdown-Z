@@ -8277,5 +8277,17 @@ export const Items: import('../sim/dex-items').ItemDataTable = {
 		},
 		num: 3007,
 		gen: 9,
-	},	
+	},
+	volcaronite: {
+		name: "Volcaronite",
+		spritenum: 612,
+		megaStone: { "Volcarona": "Volcarona-Mega" },
+		itemUser: ["Volcarona"],
+		onTakeItem(item, source) {
+			return !item.megaStone?.[source.baseSpecies.baseSpecies];
+		},
+		num: 752,
+		gen: 6,
+		isNonstandard: "Past",
+	},
 };
