@@ -4984,7 +4984,7 @@ export const Moves: import('../sim/dex-moves').MoveDataTable = {
 		basePower: 80,
 		category: "Special",
 		name: "Extrasensory",
-		pp: 20,
+		pp: 30,
 		priority: 0,
 		flags: { protect: 1, mirror: 1, metronome: 1 },
 		secondary: {
