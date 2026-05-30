@@ -8223,8 +8223,8 @@ export const Items: import('../sim/dex-items').ItemDataTable = {
 		onModifyMovePriority: 1,
 		onModifyMove(move) {
 			if (move.flags['bite']) {
-			move.critRatio = (move.critRatio || 0) + 1;
-		}
+				move.critRatio = (move.critRatio || 0) + 1;
+			}
 		},
 		num: 3004,
 		gen: 9,
@@ -8260,7 +8260,22 @@ export const Items: import('../sim/dex-items').ItemDataTable = {
 				}
 			}
 		},
-		num: 640,
+		num: 3006,
 		gen: 6,
+	},
+	fuelleneumatico: {
+		name: "Fuelle Neumático",
+		spritenum: 749,
+		fling: {
+			basePower: 30,
+		},
+		onBasePowerPriority: 23,
+		onBasePower(basePower, attacker, defender, move) {
+			if (move.flags['wind']) {
+				return this.chainModify(1.5);
+			}
+		},
+		num: 3007,
+		gen: 9,
 	},	
 };
