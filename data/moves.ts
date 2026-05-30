@@ -21446,4 +21446,23 @@ export const Moves: import('../sim/dex-moves').MoveDataTable = {
 		target: "normal",
 		type: "Water",
 	},
+	cargamental: {
+		num: 1007,
+		accuracy: 100,
+		basePower: 80,
+		category: "Special",
+		name: "Carga Mental",
+		pp: 10,
+		priority: 0,
+		flags: { protect: 1, mirror: 1, metronome: 1 },
+		secondary: {
+			chance: 100,
+			boosts: {
+				spa: -1,
+			},
+		},
+		target: "normal",
+		type: "Psychic",
+	},
 };
+  
