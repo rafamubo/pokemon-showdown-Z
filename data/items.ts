@@ -8264,7 +8264,7 @@ export const Items: import('../sim/dex-items').ItemDataTable = {
 		gen: 6,
 	},
 	fuelleneumatico: {
-		name: "Fuelle Neumático",
+		name: "Fuelle Neumatico",
 		spritenum: 749,
 		fling: {
 			basePower: 30,
