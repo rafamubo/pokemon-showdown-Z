@@ -5159,7 +5159,7 @@ export const Pokedex: import('../sim/dex-species').SpeciesDataTable = {
 		types: ["Grass", "Dragon"],
 		genderRatio: { M: 0.875, F: 0.125 },
 		baseStats: { hp: 80, atk: 105, def: 65, spa: 85, spd: 85, spe: 120 }, //+10hp +20atk -20spa
-		abilities: { 0: "Overgrow", H: "Unburden" },
+		abilities: { 0: "Overgrow", H: "Silvano" },
 		heightm: 1.7,
 		weightkg: 52.2,
 		color: "Green",
@@ -5177,7 +5177,7 @@ export const Pokedex: import('../sim/dex-species').SpeciesDataTable = {
 		types: ["Grass", "Dragon"],
 		genderRatio: { M: 0.875, F: 0.125 },
 		baseStats: { hp: 80, atk: 145, def: 75, spa: 110, spd: 85, spe: 145 }, //+10hp +35atk -35spa
-		abilities: { 0: "Lightning Rod" },
+		abilities: { 0: "Silvano" },
 		heightm: 1.9,
 		weightkg: 55.2,
 		color: "Green",
@@ -11987,13 +11987,14 @@ export const Pokedex: import('../sim/dex-species').SpeciesDataTable = {
 	volcaronamega: {
 		num: 637,
 		name: "Volcarona-Mega",
+		baseSpecies: "Volcarona",
+		forme: "Mega",
 		types: ["Bug", "Fire"],
 		baseStats: { hp: 85, atk: 60, def: 95, spa: 175, spd: 135, spe: 100 },
 		abilities: { 0: "Drought"},
 		heightm: 1.7,
 		weightkg: 56,
 		color: "White",
-		evoLevel: 59,
 		eggGroups: ["Bug"],
 		requiredItem: "Volcaronite",
 	},
@@ -12390,7 +12391,7 @@ export const Pokedex: import('../sim/dex-species').SpeciesDataTable = {
 	chesnaughtmega: {
 		num: 652,
 		name: "Chesnaught-Mega",
-		baseSpecies: "Chesnaught",
+		baseSpecies: "Chesnaught-Zeta",
 		forme: "Mega",
 		types: ["Grass", "Fighting"],
 		genderRatio: { M: 0.875, F: 0.125 },
@@ -13000,7 +13001,6 @@ export const Pokedex: import('../sim/dex-species').SpeciesDataTable = {
 		color: "White",
 		eggGroups: ["Undiscovered"],
 		requiredItem: "Floettite",
-		battleOnly: "Floette-Eternal",
 		gen: 9,
 	},
 	florges: {

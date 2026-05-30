@@ -3685,6 +3685,11 @@ export const FormatsData: import('../sim/dex-species').SpeciesFormatsDataTable =
 		doublesTier: "(DUU)",
 		natDexTier: "OU",
 	},
+	volcaronamega: {
+		tier: "Uber",
+		doublesTier: "(DUU)",
+		natDexTier: "OU",
+	},
 	cobalion: {
 		tier: "UU",
 		doublesTier: "(DUU)",
@@ -3802,6 +3807,10 @@ export const FormatsData: import('../sim/dex-species').SpeciesFormatsDataTable =
 		natDexTier: "RU",
 	},
 	chesnaughtmega: {
+		isNonstandard: "Future",
+		tier: "Illegal",
+	},
+	chesnaughtzeta: {
 		isNonstandard: "Future",
 		tier: "Illegal",
 	},

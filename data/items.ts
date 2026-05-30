@@ -865,8 +865,8 @@ export const Items: import('../sim/dex-items').ItemDataTable = {
 	chesnaughtite: {
 		name: "Chesnaughtite",
 		spritenum: 558,
-		megaStone: { "Chesnaught": "Chesnaught-Mega" },
-		itemUser: ["Chesnaught"],
+		megaStone: { "Chesnaught-Zeta": "Chesnaught-Mega" },
+		itemUser: ["Chesnaught-Zeta"],
 		onTakeItem(item, source) {
 			return !item.megaStone?.[source.baseSpecies.baseSpecies];
 		},
@@ -2192,11 +2192,11 @@ export const Items: import('../sim/dex-items').ItemDataTable = {
 	floettite: {
 		name: "Floettite",
 		spritenum: 562,
-		megaStone: { "Floette-Eternal": "Floette-Mega" },
-		itemUser: ["Floette-Eternal"],
+		megaStone: { "Floette": "Floette-Mega" },
+		itemUser: ["Floette"],
 		onTakeItem(item, source) {
-			return !item.megaStone || (!item.megaStone[source.baseSpecies.name] &&
-				!Object.values(item.megaStone).includes(source.baseSpecies.name));
+			return !item.megaStone || (!item.megaStone[source.baseSpecies.baseSpecies] &&
+				!Object.values(item.megaStone).includes(source.baseSpecies.baseSpecies));
 		},
 		num: 2579,
 		gen: 9,

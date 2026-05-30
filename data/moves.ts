@@ -15246,8 +15246,8 @@ export const Moves: import('../sim/dex-moves').MoveDataTable = {
 	},
 	rockslide: {
 		num: 157,
-		accuracy: 90,
-		basePower: 75,
+		accuracy: 80,
+		basePower: 95,
 		category: "Physical",
 		name: "Rock Slide",
 		pp: 10,

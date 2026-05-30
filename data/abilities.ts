@@ -5868,4 +5868,17 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 		rating: 1.5,
 		num: 123,
 	},
+	silvano: {
+		onResidualOrder: 28,
+		onResidualSubOrder: 2,
+		onModifyDamage(damage, source, target, move) {
+			if (this.field.isTerrain('grassyterrain') && source.isGrounded()) {
+				return this.chainModify(1.33);
+			}
+		},
+		flags: {},
+		name: "Silvano",
+		rating: 1.5,
+		num: 123,
+	},
 };
